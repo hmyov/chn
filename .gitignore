@@ -21,3 +21,39 @@
 /frontend_chn/npm-debug.log*
 /frontend_chn/yarn-debug.log*
 /frontend_chn/yarn-error.log*
+
+
+backend_chn/target/
+backend_chn/.mvn/
+!backend_chn/.mvn/wrapper/maven-wrapper.jar
+!**/backend_chn/src/main/**/target/
+!**/backend_chn/src/test/**/target/
+
+### STS ###
+backend_chn/.apt_generated
+backend_chn/.classpath
+backend_chn/.factorypath
+backend_chn/.project
+backend_chn/.settings
+backend_chn/.springBeans
+backend_chn/.sts4-cache
+
+### IntelliJ IDEA ###
+backend_chn/.idea
+*backend_chn/.iws
+*backend_chn/.iml
+*.ipr
+
+### NetBeans ###
+backend_chn/nbproject/private/
+backend_chn/nbbuild/
+backend_chn/dist/
+backend_chn/nbdist/
+backend_chn/.nb-gradle/
+backend_chn/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+backend_chn/.vscode/
+

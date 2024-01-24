@@ -1,0 +1,49 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  chn-back:
+    image: chn/back
+    environment:
+      - JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 60s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    depends_on:
+      - postgresql
+      - minio
+  chn-front:
+    image: chn/front
+    restart: unless-stopped
+    ports:
+      - 80:80
+    depends_on:
+      - chn-back
+  postgresql:
+    image: postgres:14.2
+    hostname: postgresqldb
+    # volumes:
+    #   - ~/volumes:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=chn
+      - POSTGRES_PASSWORD=chn
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 5434:5432
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8083:80"
+volumes:
+  data1-1:
+  data1-2:
